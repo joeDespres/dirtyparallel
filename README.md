@@ -1,6 +1,6 @@
 # Dirty Parallel R-Rust Implementation
 
-This project is an experiment to push the limits of multicore processing in R by integrating Rust’s high-performance, multi-threaded capabilities. The idea is to bypass some of R’s inherent single-threaded constraints by using unsafe Rust code the "dirty parallel" approach.
+This project is an experiment aimed at pushing the limits of multicore processing in R by integrating Rust’s high-performance, multi-threaded capabilities. The idea is to bypass some of R’s inherent single-threaded constraints by using unsafe Rust code—what we call the “dirty parallel” approach—to achieve significant speedups.
 
 ## Core Functionality
 
