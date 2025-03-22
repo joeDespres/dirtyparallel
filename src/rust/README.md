@@ -4,6 +4,8 @@ This project is an experiment to push the limits of multicore processing in R by
 
 ## Core Functionality
 
+- [x] Rust implementation of `lapply()`
+- [ ] handle varargs `...`
 - [ ] Implement a dirty parallel version of `lapply()`
 - [ ] Use shared memory access
 - [ ] ?Disable R's garbage collector during execution
