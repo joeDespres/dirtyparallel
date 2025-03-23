@@ -19,7 +19,7 @@ fn rustylapply(list: List, func: Robj, varargs: List) -> List {
             let args = Pairlist::from_pairs(pairs);
             match fun.call(args) {
                 Ok(result) => result,
-                Err(err) => Robj::from(format!("Error: {:?}", err)),
+                Err(err) => panic!("Error: {:?}", err),
             }
         })
         .collect();
