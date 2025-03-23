@@ -2,13 +2,14 @@
 
 This project is an experiment aimed at pushing the limits of multicore processing in R by integrating Rust’s high-performance, multi-threaded capabilities. The idea is to bypass some of R’s inherent single-threaded constraints by using unsafe Rust code—what we call the "dirty parallel" approach—to achieve significant speedups.
 
-## Core Functionality
-
+## Drop in lapply
 - [x] build a rust implementation of `lapply()`
   - [x] take varargs
   - [x] assert all args are named
-  - [ ] demand all args passed in by name
-  - [ ] permit arbitrary argument names
+  - [x] demand all args passed in by name
+  - [x] permit arbitrary argument names
+  
+## Core Functionality
 - [ ] implement a dirty parallel version of `parallel::mclapply`
 - [ ] Use shared memory access
 - [ ] ?Disable R's garbage collector during execution
