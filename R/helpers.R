@@ -53,3 +53,26 @@ assert_all_args_named <- function() {
     )
   }
 }
+#' Rename the First Argument of a Function
+#'
+#' Utility to rename the first argument of a function to `"x"`.
+#' This is mostly a temporary hack to standardize argument names
+#' during development or metaprogramming workflows.
+#'
+#' @param fn A function object whose first argument will be renamed.
+#'
+#' @return The same function with its first formal argument renamed to `"x"`.
+#'
+#' @details
+#' This is intended for internal or experimental use. It directly modifies
+#' the function's formals, which may break things if used carelessly.
+#'
+#' Hopefully, we don’t keep this!
+#'
+#' @export
+wrap_first_arg_as_x <- function(fn) {
+
+  function(x, ...) {
+    fn(x, ...)
+  }
+}

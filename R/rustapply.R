@@ -27,5 +27,9 @@ rustylapply_wrapper <- function(iterator, func, ...) {
   assert_all_args_named()
 
   varargs <- list(...)
-  rustylapply(list = iterator, func = func, varargs = varargs)
+
+  # TODO: lets hope we can get rid of this
+  f_x <- wrap_first_arg_as_x(func)
+
+  rustylapply(list = iterator, func = f_x, varargs = varargs)
 }

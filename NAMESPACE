@@ -3,4 +3,5 @@
 export(assert_all_args_named)
 export(rebuild)
 export(rustylapply_wrapper)
+export(wrap_first_arg_as_x)
 useDynLib(dirtyparallel, .registration = TRUE)

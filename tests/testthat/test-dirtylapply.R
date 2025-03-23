@@ -6,6 +6,10 @@ test_that("rustylapply", {
   )
 
 
+  expect_equal(list(100, 200, 300),
+               rustylapply_wrapper(iterator = list(a = 1, b = 2, c = 3),
+                                   func = \(y) y * 100)
+  )
 
   mat_list <- lapply(1:10, \(i) {
 
