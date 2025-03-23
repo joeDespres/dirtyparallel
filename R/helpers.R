@@ -1,25 +1,3 @@
-#' Rebuild Rust Extension and Reload Package
-#'
-#' A utility function for development that reloads the current R package
-#' and regenerates Rust extension bindings using `rextendr`.
-#'
-#' @return Invisibly returns `NULL`. Called for its side effects.
-#'
-#' @details
-#' This function is intended to speed up development when working on an
-#' R package that includes Rust code via `{rextendr}`. It first calls
-#' `devtools::load_all()` to reload the package, then runs
-#' `rextendr::document()` to re-generate bindings to Rust functions
-#' and update any necessary wrappers or documentation.
-#'
-#' This is typically used after modifying Rust source files or when
-#' iterating on Rust↔R interop code.
-#' @export
-#'
-rebuild <- function() {
-  devtools::load_all()
-  rextendr::document()
-}
 #' Assert That All Arguments Are Named
 #'
 #' Throws an error if any argument passed to the current function is not named.
