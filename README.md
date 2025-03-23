@@ -1,10 +1,15 @@
 # Dirty Parallel R-Rust Implementation
 
-This project is an experiment aimed at pushing the limits of multicore processing in R by integrating Rust’s high-performance, multi-threaded capabilities. The idea is to bypass some of R’s inherent single-threaded constraints by using unsafe Rust code—what we call the “dirty parallel” approach—to achieve significant speedups.
+This project is an experiment aimed at pushing the limits of multicore processing in R by integrating Rust’s high-performance, multi-threaded capabilities. The idea is to bypass some of R’s inherent single-threaded constraints by using unsafe Rust code—what we call the "dirty parallel" approach—to achieve significant speedups.
 
 ## Core Functionality
 
-- [ ] Implement a dirty parallel version of `lapply()`
+- [x] build a rust implementation of `lapply()`
+  - [x] take varargs
+  - [x] assert all args are named
+  - [ ] demand all args passed in by name
+  - [ ] permit arbitrary argument names
+- [ ] implement a dirty parallel version of `parallel::mclapply`
 - [ ] Use shared memory access
 - [ ] ?Disable R's garbage collector during execution
 
@@ -19,7 +24,7 @@ This project is an experiment aimed at pushing the limits of multicore processin
 
 - [ ] ?Add a retry loop for failed threads
 - [ ] Return partial results with a retry status (e.g., "RETRY FAILED")
-- [ ] Add exponential backoff or a cooldown delay between retries
+- [ ] ?Add exponential backoff or a cooldown delay between retries
 
 ## Function Validation (R side)
 

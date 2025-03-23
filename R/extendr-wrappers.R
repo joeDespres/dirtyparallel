@@ -14,7 +14,5 @@ NULL
 #' applies the function to each element, and returns a new list of results.
 rustylapply <- function(list, func, varargs) .Call(wrap__rustylapply, list, func, varargs)
 
-call_rust_with_varargs <- function(args) .Call(wrap__call_rust_with_varargs, args)
-
 
 # nolint end
