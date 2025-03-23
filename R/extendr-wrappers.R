@@ -12,7 +12,9 @@ NULL
 
 #' dirtylapply replicates R's lapply: it takes an R list and an R function,
 #' applies the function to each element, and returns a new list of results.
-dirtylapply <- function(list, func) .Call(wrap__dirtylapply, list, func)
+rustylapply <- function(list, func, varargs) .Call(wrap__rustylapply, list, func, varargs)
+
+call_rust_with_varargs <- function(args) .Call(wrap__call_rust_with_varargs, args)
 
 
 # nolint end
