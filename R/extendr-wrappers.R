@@ -12,6 +12,12 @@ NULL
 
 #' dirtylapply replicates R's lapply: it takes an R list and an R function,
 #' applies the function to each element, and returns a new list of results.
+#' @param list A list of elements to process
+#' @param func An R function to apply
+#' @param varargs Additional arguments passed to the function
+#'
+#' @return A list of results from applying `func` to each element of `list`
+#' @export
 rustylapply <- function(list, func, varargs) .Call(wrap__rustylapply, list, func, varargs)
 
 
