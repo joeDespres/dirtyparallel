@@ -9,8 +9,10 @@ name: test-coverage
 jobs:
   test-coverage:
     runs-on: ubuntu-latest
+
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
     steps:
       - uses: actions/checkout@v3
@@ -22,22 +24,21 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::covr
-          needs: coverage
 
-      - name: Test coverage
-        run: |
-          covr::codecov(
-            quiet = FALSE,
-            clean = FALSE,
-            install_path = file.path(normalizePath(Sys.getenv("RUNNER_TEMP"), winslash = "/"), "package")
-          )
+      - name: Build package
+        run: R CMD build .
+
+      - name: Install package
+        run: R CMD INSTALL --build *.tar.gz
+
+      - name: Run test coverage
+        run: covr::codecov(token = Sys.getenv("CODECOV_TOKEN"))
         shell: Rscript {0}
 
       - name: Show testthat output
         if: always()
         run: |
-          ## --------------------------------------------------------------------
-          find ${{ runner.temp }}/package -name 'testthat.Rout*' -exec cat '{}' \; || true
+          find . -name 'testthat.Rout*' -exec cat '{}' \; || true
         shell: bash
 
       - name: Upload test results
@@ -45,4 +46,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: coverage-test-failures
-          path: ${{ runner.temp }}/package
+          path: ./
