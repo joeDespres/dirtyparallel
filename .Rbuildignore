@@ -1,3 +1,5 @@
+^renv$
+^renv\.lock$
 ^dirtyparallel\.Rproj$
 ^\.Rproj\.user$
 ^src/\.cargo$
