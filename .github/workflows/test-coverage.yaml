@@ -4,15 +4,14 @@ on:
   pull_request:
     branches: [main, master]
 
-name: test-coverage
+name: unit-tests
 
 jobs:
-  test-coverage:
+  test:
     runs-on: ubuntu-latest
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
     steps:
       - uses: actions/checkout@v3
@@ -23,16 +22,10 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::covr
+          extra-packages: any::devtools
 
-      - name: Build package
-        run: R CMD build .
-
-      - name: Install package
-        run: R CMD INSTALL --build *.tar.gz
-
-      - name: Run test coverage
-        run: covr::codecov(token = Sys.getenv("CODECOV_TOKEN"))
+      - name: Run unit tests
+        run: devtools::test()
         shell: Rscript {0}
 
       - name: Show testthat output
@@ -45,5 +38,5 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-test-failures
+          name: test-failures
           paths: ./
